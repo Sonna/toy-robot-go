@@ -1,0 +1,8 @@
+image: golang:latest
+
+before_script:
+  - cmd/build
+
+test:
+  script:
+  - cmd/test

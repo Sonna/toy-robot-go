@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# go install github.com/Sonna/robot
+go build -o bin/main -i src/main.go
