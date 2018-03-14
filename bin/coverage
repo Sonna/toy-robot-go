@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+GOPATH=$(pwd)
+
+if [ ! -f public/coverage.out ]
+then
+    . bin/test
+fi
+
+go tool cover -func=public/coverage.out
+go tool cover -html=public/coverage.out -o public/coverage.html
