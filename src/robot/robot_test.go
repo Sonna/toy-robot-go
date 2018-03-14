@@ -183,3 +183,47 @@ func TestRobotPlaceHandleErrorY(t *testing.T) {
     AssertEqual(t, subject.Y, 0)
     AssertEqual(t, subject.Facing, "NORTH")
 }
+
+func TestRobotExecPlace(t *testing.T) {
+    subject := Robot{X: 0, Y: 0, Facing: "NORTH"}
+    subject.exec("PLACE", "4,2,SOUTH")
+
+    AssertEqual(t, subject.X, 4)
+    AssertEqual(t, subject.Y, 2)
+    AssertEqual(t, subject.Facing, "SOUTH")
+}
+
+func TestRobotExecMove(t *testing.T) {
+    subject := Robot{X: 0, Y: 0, Facing: "NORTH"}
+    subject.exec("MOVE")
+
+    AssertEqual(t, subject.X, 0)
+    AssertEqual(t, subject.Y, 1)
+    AssertEqual(t, subject.Facing, "NORTH")
+}
+
+func TestRobotExecLeft(t *testing.T) {
+    subject := Robot{X: 0, Y: 0, Facing: "NORTH"}
+    subject.exec("LEFT")
+
+    AssertEqual(t, subject.X, 0)
+    AssertEqual(t, subject.Y, 0)
+    AssertEqual(t, subject.Facing, "WEST")
+}
+
+func TestRobotExecRight(t *testing.T) {
+    subject := Robot{X: 0, Y: 0, Facing: "NORTH"}
+    subject.exec("RIGHT")
+
+    AssertEqual(t, subject.X, 0)
+    AssertEqual(t, subject.Y, 0)
+    AssertEqual(t, subject.Facing, "EAST")
+}
+
+func TestRobotExecReport(t *testing.T) {
+    subject := Robot{X: 0, Y: 0, Facing: "NORTH"}
+    output := CaptureStdout(func () {
+        subject.exec("REPORT")
+    })
+    AssertEqual(t, output, "0,0,NORTH\n")
+}

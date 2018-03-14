@@ -71,3 +71,17 @@ func (r *Robot) place(rawCoordinates string) {
     r.Y = y
     r.Facing = coordinates[2]
 }
+
+func (r *Robot) exec(rawCommand ...string) {
+    command, commandArgs := "", ""
+    if len(rawCommand) > 0 { command = rawCommand[0] }
+    if len(rawCommand) > 1 { commandArgs = rawCommand[1] }
+
+    switch command {
+    case "PLACE": r.place(commandArgs)
+    case "MOVE": r.move()
+    case "LEFT": r.left()
+    case "RIGHT": r.right()
+    case "REPORT": r.report()
+    }
+}
