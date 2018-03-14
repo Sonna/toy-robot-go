@@ -1,6 +1,7 @@
 package robot
 
 import (
+    "strings"
     "testing"
     . "test_helpers"
     // . "./test_helpers"
@@ -147,4 +148,38 @@ func TestRobotMoveDoesNotFallOffTableAt40South(t *testing.T) {
     AssertEqual(t, subject.X, 4)
     AssertEqual(t, subject.Y, 0)
     AssertEqual(t, subject.Facing, "SOUTH")
+}
+
+func TestRobotPlace(t *testing.T) {
+    subject := Robot{X: 0, Y: 0, Facing: "NORTH"}
+    subject.place("1,2,EAST")
+    AssertEqual(t, subject.X, 1)
+    AssertEqual(t, subject.Y, 2)
+    AssertEqual(t, subject.Facing, "EAST")
+}
+
+func TestRobotPlaceHandleErrorX(t *testing.T) {
+    subject := Robot{X: 0, Y: 0, Facing: "NORTH"}
+    output := CaptureStdout(func () {
+        subject.place("A,2,EAST")
+    })
+    AssertEqual(t,
+        strings.Contains(output, "strconv.Atoi: parsing \"A\": invalid syntax"),
+        true)
+    AssertEqual(t, subject.X, 0)
+    AssertEqual(t, subject.Y, 0)
+    AssertEqual(t, subject.Facing, "NORTH")
+}
+
+func TestRobotPlaceHandleErrorY(t *testing.T) {
+    subject := Robot{X: 0, Y: 0, Facing: "NORTH"}
+    output := CaptureStdout(func () {
+        subject.place("1,B,EAST")
+    })
+    AssertEqual(t,
+        strings.Contains(output, "strconv.Atoi: parsing \"B\": invalid syntax"),
+        true)
+    AssertEqual(t, subject.X, 0)
+    AssertEqual(t, subject.Y, 0)
+    AssertEqual(t, subject.Facing, "NORTH")
 }

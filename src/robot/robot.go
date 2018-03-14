@@ -1,6 +1,10 @@
 package robot
 
-import "fmt"
+import (
+    "fmt"
+    "strconv"
+    "strings"
+)
 
 type Robot struct {
     X int
@@ -46,4 +50,24 @@ func (r *Robot) move() {
     if y := r.Y + movement()[r.Facing]['y']; y > 0 && y < 4 {
         r.Y = y
     }
+}
+
+func (r *Robot) place(rawCoordinates string) {
+    coordinates := strings.Split(rawCoordinates, ",")
+
+    x, _xErr := strconv.Atoi(coordinates[0])
+    if _xErr != nil { // handle error
+        fmt.Println(_xErr)
+        return
+    }
+
+    y, _yErr := strconv.Atoi(coordinates[1])
+    if _yErr != nil { // handle error
+        fmt.Println(_yErr)
+        return
+    }
+
+    r.X = x
+    r.Y = y
+    r.Facing = coordinates[2]
 }
