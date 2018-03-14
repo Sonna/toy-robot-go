@@ -2,7 +2,7 @@ package example
 
 import (
     "testing"
-    . "./test_helpers"
+    . "test_helpers"
 )
 
 func TestMain(t *testing.T) {
