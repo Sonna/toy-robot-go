@@ -6,3 +6,11 @@ before_script:
 test:
   script:
   - cmd/test
+  - cmd/coverage
+
+  artifacts:
+    paths:
+      - public/
+  coverage: '/^total:[\t ]*\(statements\)[\t ]*\d+.\d+\%$/'
+
+

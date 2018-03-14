@@ -1,9 +1,10 @@
 package main
 
 import (
-    "./example"
+    "os"
+    "./robot"
 )
 
 func main() {
-  example.Main()
+  robot.Main(os.Args)
 }

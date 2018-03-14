@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-go test -v ./src/*/ -cover
+GOPATH=$(pwd)
+
+go test -v ./src/*/ -cover -coverprofile=public/coverage.out
