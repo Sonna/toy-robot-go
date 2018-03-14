@@ -8,9 +8,9 @@ test:
   - cmd/test
   - cmd/coverage
 
-artifacts:
-  paths:
-    - public/
-coverage: '/^total: *\(statements\) *\d+.\d+\%$/'
+  artifacts:
+    paths:
+      - public/
+  coverage: '/^total: *\(statements\) *\d+.\d+\%$/'
 
 
