@@ -30,7 +30,7 @@ func TestRobotCLIMainWithExampleA(t *testing.T) {
 func TestRobotCLIMainWithExampleB(t *testing.T) {
     subject := []string{"bin/main", "../../examples/example_b.txt"}
     output := CaptureStdout(func() { Main(subject) })
-    AssertEqual(t, output, "0,1,NORTH\n2,1,EAST\n")
+    AssertEqual(t, output, "0,0,WEST\n")
 }
 
 func TestRobotCLIMainWithExampleC(t *testing.T) {
